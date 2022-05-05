@@ -20,6 +20,10 @@
 @section('meh')
 
  <h1>MEEEEEEEH</h1>
+
+ <a href="/post">Post</a><br>
+ <a href="/category">Categorías</a>
+ 
 @endsection
 
 

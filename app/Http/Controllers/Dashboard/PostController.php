@@ -18,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(10);
+        $posts = Post::paginate(4);
         return view('dashboard.post.index', compact('posts'));
     }
 
@@ -67,9 +67,25 @@ class PostController extends Controller
         // dd($data);
 
         //Post::create($request->all());
-        Post::create($request->validated());
 
-        return to_route("post.index")->with('status', "Registro creado");;
+
+        // Post::create($request->validated());
+
+        
+
+        $data = $request->validated();
+
+        if(isset($data["image"])){
+
+            $data["image"] = $filename = time().".".$data["image"]->extension();
+
+            $request->image->move(public_path("image"), $filename);
+
+        }
+
+        Post::create($data);
+
+        return to_route("post.index")->with('status', "Registro creado");
 
 
     }

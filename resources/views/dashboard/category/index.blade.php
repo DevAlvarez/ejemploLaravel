@@ -3,6 +3,7 @@
 @section('content')
 
     <a class="my-2 btn btn-success" href="{{ route("category.create") }}">Crear</a>
+    <a class="my-2 btn btn-secondary" href="/dashboard/post">Posts</a>
 
     <table class="table mb-3">
         <thead>

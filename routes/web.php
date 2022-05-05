@@ -1,8 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\PostController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 
 /*
@@ -15,6 +15,47 @@ use App\Http\Controllers\TestController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
+
+// Lo hecho en la primera parte del curso antes de tailwind
+
+
+
+Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
+
+    // Route::get('/', function () {
+    //     return view('dashboard');
+    // })->name('dashboard');
+
+    Route::resources([
+        'post' => PostController::class,
+        'category' => CategoryController::class
+    ]);
+
+});
+
+// Route::resource('post', PostController::class);
+
+// Route::resource('category', CategoryController::class);
+
+// Route::get('post', [PostController::class, 'index']);
+// Route::get('post/{post}', [PostController::class, 'show']);
+// Route::get('post/create', [PostController::class, 'create']);
+// Route::get('post/{post}/edit', [PostController::class, 'edit']);
+
+// Route::post('post', [PostController::class, 'store']);
+// Route::put('post/{post}', [PostController::class, 'update']);
+// Route::delete('post/{post}', [PostController::class, 'destroy']);
 
 // Route::get('/', [TestController::class, 'index'] )->name('index');
 
@@ -36,17 +77,3 @@ use App\Http\Controllers\TestController;
 //     return view('layout/master');
 
 // })->name('master');
-
-Route::resource('post', PostController::class);
-
-Route::resource('category', CategoryController::class);
-
-// Route::get('post', [PostController::class, 'index']);
-// Route::get('post/{post}', [PostController::class, 'show']);
-// Route::get('post/create', [PostController::class, 'create']);
-// Route::get('post/{post}/edit', [PostController::class, 'edit']);
-
-// Route::post('post', [PostController::class, 'store']);
-// Route::put('post/{post}', [PostController::class, 'update']);
-// Route::delete('post/{post}', [PostController::class, 'destroy']);
-

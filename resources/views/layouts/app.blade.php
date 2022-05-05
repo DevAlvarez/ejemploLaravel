@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,22 +23,14 @@
             <!-- Page Heading -->
             <header class="bg-white shadow">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{-- {{ $header }} --}}
+                    {{ $header }}
                 </div>
             </header>
 
-        
-        
-            @if(session('status'))
-                <h2>{{session('status')}}</h2> <br>
-            @endif
-
-            <div class="container mx-auto">
-                <div class="card card-white mt-4">
-                    @yield('content')
-                </div>
-            </div>
+            <!-- Page Content -->
+            <main>
+                {{ $slot }}
+            </main>
         </div>
-            
-</body>
+    </body>
 </html>

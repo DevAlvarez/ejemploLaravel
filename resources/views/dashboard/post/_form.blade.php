@@ -27,9 +27,14 @@
 <label for="">Descripción</label><br><br>
 <textarea class="form-control" name="description">{{ old('description', $post->description) }}</textarea><br><br>
 
-@if (isset($task) && $task == 'edit')
+{{-- @if (isset($task) && $task == 'edit')
     <label for="">Imagen</label>
     <input type="file" name="image">
-@endif
+@endif --}}
+
+
+    <label for="">Imagen</label>
+    <input type="file" name="image">
+
 
 <button type="submit" class="btn btn-success mt-3">Enviar</button>
