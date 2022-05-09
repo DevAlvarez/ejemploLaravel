@@ -31,7 +31,7 @@ require __DIR__.'/auth.php';
 
 
 
-Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'admin']], function () {
 
     // Route::get('/', function () {
     //     return view('dashboard');
